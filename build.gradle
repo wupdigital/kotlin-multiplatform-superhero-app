@@ -1,0 +1,40 @@
+buildscript {
+    ext.kotlin_version = '1.2.30'
+    ext.android_gradle_plugin_version = '3.0.1'
+    ext.kotlin_native_version = '0.6'
+    ext.spring_boot_version = '2.0.0.RELEASE'
+    ext.junit_version = '4.12'
+    ext.android_support_version = '27.1.0'
+    ext.retrofit_version = '2.4.0'
+    ext.rx_java_version = '2.1.10'
+
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$android_gradle_plugin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+    }
+}
+
+apply plugin: 'base'
+
+allprojects {
+
+    group = 'digital.wup.superheroapp'
+    version = '1.0.0-SNAPSHOT'
+
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
+clean {
+    delete project.buildDir
+}

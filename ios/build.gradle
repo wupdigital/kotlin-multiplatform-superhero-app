@@ -1,0 +1,15 @@
+apply plugin: 'konan'
+apply plugin: 'idea'
+
+dependencies {
+    expectedBy project(':common-client')
+}
+
+konan.targets = ['iphone', 'iphone_sim']
+
+konanArtifacts {
+
+    framework("app") {
+        enableMultiplatform true
+    }
+}
