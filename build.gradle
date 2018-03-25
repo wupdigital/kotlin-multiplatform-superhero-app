@@ -1,30 +1,98 @@
 buildscript {
-    ext.kotlin_version = '1.2.30'
-    ext.android_gradle_plugin_version = '3.0.1'
-    ext.kotlin_native_version = '0.6'
-    ext.spring_boot_version = '2.0.0.RELEASE'
-    ext.junit_version = '4.12'
-    ext.android_support_version = '27.1.0'
-    ext.retrofit_version = '2.4.0'
-    ext.rx_java_version = '2.1.10'
+
+    ext.android_versions = [
+            min_sdk    : 17,
+            target_sdk : 27,
+            build_tools: '27.0.3',
+            compile_sdk: 27
+    ]
+
+    ext.versions = [
+            // Common
+            kotlin                                  : '1.2.30',
+            kotlin_serialization_version            : '0.4.2',
+
+            // Jvm
+            jackson                                 : '2.9.4',
+            okhttp                                  : '3.10.0',
+            retrofit2                               : '2.4.0',
+            rxjava2                                 : '2.1.10',
+            retrofit2_kotlin_serialization_converter: '0.0.1',
+
+            // Android
+            android_gradle_plugin                   : '3.0.1',
+            android_support                         : '27.1.0',
+            constraint_layout                       : '1.0.2',
+
+            // iOS
+            kotlin_native                           : '0.6.1',
+
+            // Spring
+            spring_boot                             : '2.0.0.RELEASE'
+    ]
+
+    ext.deps = [
+            kotlin               : [
+                    stdlib       : [
+                            common: "org.jetbrains.kotlin:kotlin-stdlib-common:${versions.kotlin}",
+                            jdk   : "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}",
+                    ],
+                    test         : [
+                            common: ["org.jetbrains.kotlin:kotlin-test-common:${versions.kotlin}",
+                                     "org.jetbrains.kotlin:kotlin-test-annotations-common:${versions.kotlin}"],
+                            jdk   : ["org.jetbrains.kotlin:kotlin-test:${versions.kotlin}",
+                                     "org.jetbrains.kotlin:kotlin-test-junit:${versions.kotlin}"]
+                    ],
+                    serialization: [
+                            common: "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${versions.kotlin_serialization_version}",
+                            jdk   : "org.jetbrains.kotlinx:kotlinx-serialization-runtime:${versions.kotlin_serialization_version}"
+                    ],
+                    reflect      : "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}",
+            ],
+
+            // Jvm
+            rxjava2              : "io.reactivex.rxjava2:rxjava:${versions.rxjava2}",
+            retrofit2            : ["com.squareup.retrofit2:retrofit:${versions.retrofit2}",
+                                    "com.squareup.retrofit2:adapter-rxjava2:${versions.retrofit2}",
+                                    "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${versions.retrofit2_kotlin_serialization_converter}"],
+
+            okhttp3              : ["com.squareup.okhttp3:okhttp:${versions.okhttp}",
+                                    "com.squareup.okhttp3:logging-interceptor:${versions.okhttp}"],
+
+            jackson_module_kotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${versions.jackson}",
+
+            // Android
+            android_support      : [
+                    "com.android.support:appcompat-v7:${versions.android_support}",
+                    "com.android.support.constraint:constraint-layout:${versions.constraint_layout}"
+            ],
+
+            // Spring
+            spring_boot          : [
+                    web : "org.springframework.boot:spring-boot-starter-web:${versions.spring_boot}",
+                    test: "org.springframework.boot:spring-boot-starter-test:${versions.spring_boot}"
+            ]
+    ]
 
     repositories {
         google()
         jcenter()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
         maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$android_gradle_plugin_version"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:$kotlin_native_version"
-        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
+        classpath "com.android.tools.build:gradle:${versions.android_gradle_plugin}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "org.jetbrains.kotlinx:kotlinx-gradle-serialization-plugin:${versions.kotlin_serialization_version}"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:${versions.kotlin_native}"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:${versions.kotlin}"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${versions.spring_boot}"
     }
 }
 
 apply plugin: 'base'
 
-allprojects {
+subprojects {
 
     group = 'digital.wup.superheroapp'
     version = '1.0.0-SNAPSHOT'
@@ -32,6 +100,8 @@ allprojects {
     repositories {
         jcenter()
         google()
+        maven { url "https://kotlin.bintray.com/kotlinx" }
+        maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
     }
 }
 

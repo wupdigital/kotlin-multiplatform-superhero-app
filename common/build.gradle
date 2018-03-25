@@ -1,9 +1,10 @@
 apply plugin: 'kotlin-platform-common'
+apply plugin: 'kotlinx-serialization'
 apply plugin: 'idea'
 apply from: "$rootProject.projectDir/gradle/ktlint.gradle"
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
+    implementation deps.kotlin.stdlib.common
+    implementation deps.kotlin.serialization.common
+    testImplementation deps.kotlin.test.common
 }

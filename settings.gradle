@@ -1,7 +1,13 @@
 rootProject.name = 'superheroapp'
 
-include ':android'
 include ':common'
+include ':common-spring-backend'
+include ':common-android'
 include ':common-client'
+include ':common-client-android'
 include ':spring-backend'
-include ':ios'
+include ':android'
+//include ':ios'
+
+
+

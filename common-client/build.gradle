@@ -4,7 +4,6 @@ apply from: "$rootProject.projectDir/gradle/ktlint.gradle"
 
 dependencies {
     compile project(":common")
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-annotations-common:$kotlin_version"
-    testImplementation "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
+    implementation deps.kotlin.stdlib.common
+    testImplementation deps.kotlin.test.common
 }

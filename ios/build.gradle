@@ -2,15 +2,17 @@ apply plugin: 'konan'
 apply plugin: 'idea'
 apply from: "$rootProject.projectDir/gradle/ktlint.gradle"
 
-dependencies {
-    expectedBy project(':common-client')
-}
-
 konan.targets = ['iphone', 'iphone_sim']
 
 konanArtifacts {
 
     framework("app") {
+        srcFiles fileTree('src/main/kotlin')
+        enableOptimizations true
         enableMultiplatform true
     }
+}
+
+dependencies {
+    expectedBy project(':common')
 }

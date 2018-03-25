@@ -1,21 +1,16 @@
 apply plugin: 'kotlin'
-apply plugin: "kotlin-spring"
-apply plugin: 'org.springframework.boot'
 apply plugin: 'kotlin-platform-jvm'
 apply plugin: 'idea'
 apply from: "$rootProject.projectDir/gradle/ktlint.gradle"
 apply from: "$rootProject.projectDir/gradle/jvm-config.gradle"
 
 dependencies {
-    compile project(":common-spring-backend")
-    implementation deps.kotlin.stdlib.jdk
+    expectedBy project(":common")
+    compile deps.kotlin.stdlib.jdk
     implementation deps.kotlin.reflect
     implementation deps.kotlin.serialization.jdk
-    implementation deps.spring_boot.web
-    implementation deps.rxjava2
-    implementation deps.jackson_module_kotlin
-
-
+    compile deps.spring_boot.web
+    compile deps.rxjava2
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.spring_boot.test
 }

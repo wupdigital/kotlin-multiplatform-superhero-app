@@ -1,6 +1,5 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-platform-android'
 apply plugin: 'kotlinx-serialization'
 apply plugin: 'idea'
@@ -11,13 +10,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
     }
-    
+
     compileSdkVersion android_versions.compile_sdk
     buildToolsVersion android_versions.build_tools
 
     defaultConfig {
-        applicationId = project.group
-
         minSdkVersion android_versions.min_sdk
         targetSdkVersion android_versions.target_sdk
         versionCode 1
@@ -49,12 +46,9 @@ android {
 }
 
 dependencies {
-    api project(':common-client-android')
+    api project(':common-android')
+    expectedBy project(':common-client')
     api deps.kotlin.stdlib.jdk
-    api deps.android_support
-    implementation deps.rxjava2
-    implementation deps.retrofit2
-    implementation deps.kotlin.serialization.jdk
-    implementation deps.okhttp3
+    api deps.rxjava2
     testImplementation deps.kotlin.test.jdk
 }
