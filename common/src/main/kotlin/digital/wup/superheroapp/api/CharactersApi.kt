@@ -1,4 +1,4 @@
-package digital.wup.superheroapp.data.source.remote
+package digital.wup.superheroapp.api
 
 import digital.wup.superheroapp.domain.model.Character
 import digital.wup.superheroapp.rx.Single

@@ -15,7 +15,6 @@ dependencies {
     implementation deps.rxjava2
     implementation deps.jackson_module_kotlin
 
-
     testImplementation deps.kotlin.test.jdk
     testImplementation deps.spring_boot.test
 }

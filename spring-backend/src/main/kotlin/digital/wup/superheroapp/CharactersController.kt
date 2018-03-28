@@ -1,9 +1,8 @@
 package digital.wup.superheroapp
 
-import digital.wup.superheroapp.data.source.remote.CharactersApi
-import digital.wup.superheroapp.data.source.remote.CharactersMockApi
-import digital.wup.superheroapp.domain.model.Character
-import digital.wup.superheroapp.rx.Single
+import digital.wup.superheroapp.api.CharactersApi
+import digital.wup.superheroapp.api.CharactersMockApi
+
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -14,7 +13,7 @@ class CharactersController : CharactersApi {
     private val facade = CharactersMockApi()
 
     @GetMapping("/characters")
-    override fun getCharacters(): Single<List<Character>> = facade.getCharacters()
+    override fun getCharacters() = facade.getCharacters()
 
     @GetMapping("/characters/{id}")
     override fun getCharacterById(@PathVariable("id") characterId: String) = facade.getCharacterById(characterId)

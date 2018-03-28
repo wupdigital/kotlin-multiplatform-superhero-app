@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.stringBased
 import digital.wup.superheroapp.R
-import digital.wup.superheroapp.data.source.remote.CharactersApi
+import digital.wup.superheroapp.api.CharactersApi
 import kotlinx.serialization.json.JSON
 import okhttp3.MediaType
 import retrofit2.Retrofit

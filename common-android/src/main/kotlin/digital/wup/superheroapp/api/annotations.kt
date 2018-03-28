@@ -1,4 +1,4 @@
-package digital.wup.superheroapp.data.source.remote
+package digital.wup.superheroapp.api
 
 actual typealias GET = retrofit2.http.GET
 
